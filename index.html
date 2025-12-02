@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tacovedo Toneworks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Basic meta for vendors like Stripe -->
+  <meta
+    name="description"
+    content="Tacovedo Toneworks is a small independent studio business focused on recording, used musical instrument and gear sales, and studio-related software tools."
+  />
+
+  <style>
+    :root {
+      --bg: #050608;
+      --bg-alt: #1a120d;
+      --accent: #d8b97a;
+      --accent-soft: rgba(216, 185, 122, 0.4);
+      --text-main: #f7f3ea;
+      --text-muted: #b5a58c;
+      --max-width: 960px;
+      --radius-lg: 18px;
+      --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #1c1712 0, var(--bg) 60%);
+      color: var(--text-main);
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .page {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+    }
+
+    .card {
+      width: 100%;
+      max-width: var(--max-width);
+      background: radial-gradient(circle at top left, #261a10 0, var(--bg-alt) 55%)
+        no-repeat;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      display: grid;
+      grid-template-columns: minmax(0, 3fr);
+    }
+
+    /* Hero image strip */
+    .hero {
+      position: relative;
+      min-height: 220px;
+      background-image:
+        linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)),
+        url("images/hero-texture.jpg");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 2.5rem;
+    }
+
+    .hero-inner {
+      text-align: center;
+    }
+
+    .hero-logo {
+      max-width: 420px;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem;
+      filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.85));
+    }
+
+    .hero-title {
+      font-size: clamp(1.8rem, 3vw, 2.3rem);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .hero-tagline {
+      margin-top: 0.35rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Body content */
+    .content {
+      padding: 2.2rem 2.4rem 2.4rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.75rem 2.5rem;
+    }
+
+    @media (max-width: 720px) {
+      .content {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+    }
+
+    .avatar-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 2px solid rgba(216, 185, 122, 0.65);
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
+      background: #332417;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .copy h2 {
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 0.9rem;
+      color: var(--accent);
+    }
+
+    .copy p {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: var(--text-main);
+      margin-bottom: 0.8rem;
+    }
+
+    .copy p:last-of-type {
+      margin-bottom: 1.5rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .pill {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      color: var(--text-muted);
+      background: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(4px);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .list {
+      list-style: none;
+      margin-bottom: 1.6rem;
+    }
+
+    .list li {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      opacity: 0.9;
+    }
+
+    .contact-box {
+      margin-top: 0.4rem;
+      padding: 0.75rem 0.9rem;
+      border-radius: 10px;
+      background: radial-gradient(circle at top left, rgba(216, 185, 122, 0.16), rgba(0, 0, 0, 0.6));
+      border: 1px solid rgba(216, 185, 122, 0.3);
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-box a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-box a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 1rem;
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer span {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="card" aria-label="Tacovedo Toneworks overview">
+      <header class="hero">
+        <div class="hero-inner">
+          <!-- Replace with your wide banner image -->
+          <img
+            src="images/logo-banner.png"
+            alt="Tacovedo Toneworks logo"
+            class="hero-logo"
+          />
+          <h1 class="hero-title">Tacovedo Toneworks</h1>
+          <p class="hero-tagline">Recording &amp; Creative Audio Services</p>
+        </div>
+      </header>
+
+      <div class="content">
+        <aside class="avatar-wrap">
+          <div class="avatar">
+            <!-- Replace with your avatar image -->
+            <img src="images/avatar.png" alt="Tacovedo Toneworks brand mark" />
+          </div>
+        </aside>
+
+        <section class="copy">
+          <h2>What We Do</h2>
+          <p>
+            Tacovedo Toneworks is a small independent studio business focused on
+            capturing, shaping, and supporting great sound. We operate as a
+            <strong>recording studio</strong>, a source for
+            <strong>used musical instruments and gear</strong>, and a home for
+            <strong>studio-related software and tools</strong> we design and
+            build.
+          </p>
+          <p>
+            Our work spans session recording, tone shaping, and project support
+            for artists, makers, and collaborators, alongside carefully selected
+            second-hand instruments and studio equipment, and custom utilities
+            for modern audio workflows.
+          </p>
+
+          <div class="pill-row" aria-label="Areas of focus">
+            <div class="pill">Recording Studio</div>
+            <div class="pill">Used Instruments &amp; Gear</div>
+            <div class="pill">Studio Software</div>
+          </div>
+
+          <div>
+            <div class="section-label">Services</div>
+            <ul class="list">
+              <li>Project, demo, and remote recording sessions (by appointment)</li>
+              <li>Curated resale of used musical instruments and studio gear</li>
+              <li>Development and licensing of studio-focused software tools</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="section-label">Contact</div>
+            <div class="contact-box">
+              <!-- Replace the email with your real contact address -->
+              <span>Email:
+                <a href="mailto:hello@tacovedo.com">hello@tacovedo.com</a>
+              </span>
+              <!-- Optional: add links to your socials or marketplace profiles -->
+              <!-- <span>Reverb / Shop: <a href="#">Link here</a></span> -->
+            </div>
+          </div>
+
+          <footer class="footer">
+            <span>&copy; <span id="year"></span> Tacovedo Toneworks. All rights reserved.</span>
+            <span>Independent recording, gear, &amp; software studio.</span>
+          </footer>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
